@@ -82,10 +82,10 @@ input.empty {
 }
 
 .selected {
-  background-color: rgba(143, 143, 143, 0.281);
+  background-color: rgb(143, 143, 143);
 }
 
 .img-menu {
-  max-width: 80%;
+  max-width: 100%;
   height: auto;
 }
