@@ -1,8 +1,9 @@
+//Algoritma Async Search
 function mySearchFunction() {
   var input, filter, ul, li, item, i, txtValue;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
-  ul = document.getElementById("stateList");
+  ul = document.getElementById("allMenu");
   li = ul.getElementsByTagName("li");
   for (i = 0; i < li.length; i++) {
     item = li[i];
@@ -14,18 +15,6 @@ function mySearchFunction() {
     }
   }
 }
-
-(function ($) {
-  "use strict";
-
-  // Add active state to sidbar nav links
-  var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
-  $("#layoutSidenav_nav .sidebar a.nav-link").each(function () {
-    if (this.href === path) {
-      $(this).addClass("active");
-    }
-  });
-})(jQuery);
 
 $("#myInput").on("keyup", function () {
   var input = $(this);
@@ -67,3 +56,5 @@ function formatRupiah(angka, prefix) {
   rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
   return prefix == undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
 }
+
+// Cache selectors

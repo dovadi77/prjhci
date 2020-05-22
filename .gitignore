@@ -1,5 +1,9 @@
-composer.json
-
 composer.lock
 
 vendor/
+
+.prettierrc
+
+test.html
+
+popup.html
