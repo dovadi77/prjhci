@@ -16,12 +16,28 @@ if ($data->num_rows === 0) exit('No Rows');
                 <li id="<?php echo $row['id']; ?>" class="col-6 col-lg-3 mt-3 pt-2" data-value="<?php echo $row['harga']; ?>" onclick="calculateTotal('<?php echo $row['id']; ?>')">
                     <img src="img/<?php echo $row['nama']; ?>.png" alt="<?php echo $row['nama']; ?>" class="img-menu size-img">
                     <p><?php echo $row['nama']; ?></p> <?php echo toRupiah($row['harga']); ?>
-                    <div class="quantity">
+                    <!-- <div class="quantity">
                         <a href="#" class="quantity__minus"><span>-</span></a>
                         <input name="quantity" type="text" class="quantity__input" value="1">
                         <a href="#" class="quantity__plus"><span>+</span></a>
-                    </div>
+                    </div> -->
                 </li>
+                <div id="myModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Modal Header</h2>
+                            <span class="close" id="closex">&times;</span>
+                        </div>
+                        <div class="modal-body">
+                            <p>Some text in the Modal Body</p>
+                            <p>Some other text...</p>
+                        </div>
+                        <div class="modal-footer">
+                            <h3>Modal Footer</h3>
+                        </div>
+                    </div>
+                </div>
             <?php } ?>
         </ul>
     </div>

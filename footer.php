@@ -51,6 +51,7 @@
             value++;
             input.val(value);
         })
+
     });
 </script>
 

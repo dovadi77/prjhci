@@ -98,14 +98,14 @@ input.empty {
 
 .quantity__minus,
 .quantity__plus {
-  display: block;
-  width: 22px;
-  height: 23px;
+  display: inline;
+  padding: 0 10px 0 10px;
   margin: 0;
   background: #dee0ee;
   text-decoration: none;
   text-align: center;
   line-height: 23px;
+  color: black;
 }
 .quantity__minus:hover,
 .quantity__plus:hover {
@@ -119,8 +119,8 @@ input.empty {
   border-radius: 0 3px 3px 0;
 }
 .quantity__input {
-  width: 32px;
-  height: 19px;
+  width: 35px;
+  height: 20px;
   margin: 0;
   padding: 0;
   text-align: center;
@@ -135,7 +135,87 @@ input.empty {
 .quantity__plus:link {
   color: #8184a1;
 }
-.quantity__minus:visited,
-.quantity__plus:visited {
-  color: #fff;
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 300px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+@media screen and (min-width: 768px) {
+  .modal {
+    padding-top: 150px;
+  }
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animate;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animate;
+  animation-duration: 0.4s;
+}
+
+/* Add Animation */
+@-webkit-keyframes animate {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes animate {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {
+  padding: 2px 16px;
+}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
 }
