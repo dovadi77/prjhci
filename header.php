@@ -27,8 +27,10 @@
                 </ul>
             </nav>
         </nav>
-        <nav class="content">
-            <h3 class="text-right">Total </h3>
-            <h5 id="rupiah" class="text-right">Rp. 0</h5>
+        <nav class="navbar fixed-top navbar-light bg-navbar" style="z-index: 1">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">Total</li>
+                <li class="nav-item" id="rupiah">Rp. 0</li>
+            </ul>
         </nav>
     </header>

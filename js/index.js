@@ -57,36 +57,13 @@ function formatRupiah(angka, prefix) {
   return prefix == undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
 }
 // Get the button that opens the modal
-$("li[id^='c']").on("click", function () {
-  $("#myModal").css("display", "block");
+$("li[id]").on("click", function () {
+  var id = $(this).attr("id");
+  $("#myModal" + id).css("display", "block");
+  calculateTotal(id);
 });
 
-// Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal
+// When the user clicks the button, close the modal
 $("span[class^='close'").on("click", function () {
-  $("#myModal").css("display", "none");
+  $("div[class='modal']").css("display", "none");
 });
-
-// When the user clicks on <span> (x), close the modal
-// span.onclick = function () {
-//   modal.style.display = "none";
-// };
-
-// When the user clicks anywhere outside of the modal, close it
-// window.onclick = function (event) {
-//   if (event.target == $("div[class='modal']")) {
-//     modal.style.display = "none";
-//   }
-// };
-
-$(window).on("click", function (event) {
-  var modal = $("#myModal");
-  if ($(event.target).closest(modal).length) {
-    $(modal).css("display", "none");
-    event.stopPropagation();
-  }
-});
-
-// Cache selectors

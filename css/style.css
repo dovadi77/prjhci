@@ -10,6 +10,7 @@ body {
   position: fixed;
   overflow: auto;
   height: 100%;
+  z-index: 2;
 }
 
 /* Sidebar links */
@@ -139,7 +140,7 @@ input.empty {
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 2; /* Sit on top */
   padding-top: 300px; /* Location of the box */
   left: 0;
   top: 0;
@@ -218,4 +219,8 @@ input.empty {
   padding: 2px 16px;
   background-color: #5cb85c;
   color: white;
+}
+/* navbar top */
+.bg-navbar {
+  background-color: #cccccc;
 }
