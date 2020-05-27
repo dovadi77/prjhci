@@ -67,3 +67,78 @@ $("li[id]").on("click", function () {
 $("span[class^='close'").on("click", function () {
   $("div[class='modal']").css("display", "none");
 });
+
+//get button that open payment
+$('.paybut').on("click", function () {
+  $('.pay_pop').css("display", "block");
+});
+
+// When the user clicks the button, open the payment
+$("span[class^='close'").on("click", function () {
+  $(".pay_pop").css("display", "none");
+});
+
+//payment method selection
+$('#cash').on("click",function(){
+	if ($('#cash').is(':checked')) {
+		$(".pay_cash, .confirm").css("display", "block");
+		$(".pay_ewallet, .pay_edc, .pnum").css("display", "none");
+		$("#ovo, #dana, #gopay, #bca, #bni, #mandiri").prop('checked', false);
+	}
+});
+$('#ewallet').on("click",function(){
+	if ($('#ewallet').is(':checked')) {
+		$(".pay_cash, .pay_edc").css("display", "none");
+		$(".pay_ewallet").css("display", "block");
+		$("#cashpay").val(null);
+	}
+	if (!$('.ovo, .gopay, .dana').is(':checked')) {
+		$(".confirm2").css("display", "none");
+	}
+});
+$('#edc').on("click",function(){
+	if ($('#edc').is(':checked')) {
+		$(".pay_cash, .pay_ewallet").css("display", "none");
+		$(".pay_edc").css("display", "block");
+		$("#cashpay").val(null);
+	if (!$('.bca, .bni, .mandiri').is(':checked')) {
+		$(".confirm").css("display", "none");
+	}
+	}
+});
+$('#ovo, #gopay').on("click",function(){
+	if ($('#ovo, #gopay').is(':checked')) {
+		$(".pnum").css("display", "block");
+		$(".confirm2").css("display", "block");
+	}
+});
+$('#dana').on("click",function(){
+	if ($('#dana').is(':checked')) {
+		$(".pnum").css("display", "none");
+		$(".confirm2").css("display", "block");
+	}
+});
+$('#bca, #bni, #mandiri').on("click",function(){
+	if ($('#dana, #bca, #bni, #mandiri').is(':checked')) {
+		$(".pnum").css("display", "none");
+		$(".confirm3").css("display", "block");
+	}
+});
+function confirmpay(id) {
+	var beli = document.getElementById(id);
+	var bayar = document.getElementById('cashpay');
+}
+function confirmpay2(){
+	if ($('#ovo, #gopay').is(':checked') && $('#pnum') === null ){
+		alert("Please Insert Phone Number!");
+	}
+	else {
+		alert("Pembelian telah diproses!");
+		$('#ewallet, #edc, #ovo, #dana, #gopay, #bca, #bni, #mandiri').prop('checked', false);
+		$(".pay_cash, .pay_ewallet, .pay_edc").css("display", "none");
+		$(".pnum").css("display", "none");
+		$('#pnum, #cashpay').val(null);
+		$('#pay_pop').hide();
+	}
+}
+
