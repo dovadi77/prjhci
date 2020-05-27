@@ -213,6 +213,8 @@ input.empty {
 
 .modal-body {
   padding: 2px 16px;
+  height: 50%;
+  overflow-y: auto;
 }
 
 .modal-footer {
