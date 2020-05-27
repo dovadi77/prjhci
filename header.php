@@ -32,5 +32,71 @@
                 <li class="nav-item">Total</li>
                 <li class="nav-item" id="rupiah">Rp. 0</li>
             </ul>
-        </nav>
+			<li class="list-unstyled nav-item">
+			<input type = "button" class = "paybut" value = "confirm" style="background-color:#f14e4e">
+			</li>
+		</nav>
+		<div id="pay_pop" class="pay_pop">
+            <!-- Modal content -->
+            <div class="payment-content">
+				<div class="modal-header">
+					<h2>PAYMENT</h2>
+					<span class="close" id="closex">&times;</span>
+                </div>
+				<div class="modal-body">
+					<p>Total: <span id="total">Rp. 0</span></p>
+                    <p>Select Payment Method:</p>
+					<input type = "radio" id = "cash" name = "payment" value = "cash"">
+						<label for = "cash"><tabspace>CASH</tabspace></label>
+					<input type = "radio" id = "ewallet" name = "payment" value = "ewallet">
+						<label for = "ewallet"><tabspace>E-WALLET</tabspace></label>
+					<input type = "radio" id = "edc" name = "payment" value = "edc">
+						<label for = "edc"><tabspace>EDC</tabspace></label>
+					<div class="pay_cash" id = "pay_cash">
+						<tabspace>CASH:</tabspace>
+						<input type="text" id="cashpay">
+						<div align = "right" class = "mt-4 mb-3 confirm" style="display:none"><input type = "button" value = "Confirm Payment" onclick="confirmpay()"></div>
+					</div>
+					<div class="pay_ewallet">
+						Select E-Wallet:
+						<ul class = "list-unstyled ewallet_method" id = "id_ewallet">
+							<li>
+								<input type = "radio" id = "ovo" name = "pay">
+								<label for = "pay"><img src = "img/ovo.png">
+							</li>
+							<li>
+								<input type = "radio" id = "gopay" name = "pay">
+								<label for = "pay"><img src = "img/gopay.png">
+							</li>
+							<li>
+								<input type = "radio" id = "dana" name = "pay">
+								<label for = "pay"><img src = "img/dana.png">
+							</li>
+						</ul>
+						<div class = "pnum" style='display: none'><tabspace>Phone Number:</tabspace>
+						<input type="text" id="pnumber"></div>
+						<div align = "right" class = "mt-4 mb-3 confirm2" style="display:none"><input type = "button" value = "Confirm Payment" onclick="confirmpay2()"></div>
+					</div>
+					<div class="pay_edc">
+						Select EDC:
+						<ul class = "list-unstyled ewallet_method" id = "id_edc">
+							<li>
+								<input type = "radio" id = "bca" name = "pay">
+								<label for = "pay">BCA
+							</li>
+							<li>
+								<input type = "radio" id = "mandiri" name = "pay">
+								<label for = "pay">MANDIRI
+							</li>
+							<li>
+								<input type = "radio" id = "bni" name = "pay">
+								<label for = "pay">BNI
+							</li>
+						</ul>
+						<div align = "right" class = "mt-4 mb-3 confirm3" style="display:none"><input type = "button" value = "Confirm Payment" onclick="confirmpay2()"></div>
+					</div>
+                </div>
+            </div>
+        </div>
+<!--		<a class = "paybut" style="background-color:#f14e4e">Confirm</a>-->
     </header>
