@@ -89,7 +89,6 @@ input.empty {
   -o-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
   background-color: rgb(143, 143, 143);
-  content: "✓";
 }
 
 .img-menu {
@@ -97,51 +96,11 @@ input.empty {
   height: auto;
 }
 
-.quantity__minus,
-.quantity__plus {
-  display: inline;
-  padding: 0 10px 0 10px;
-  margin: 0;
-  background: #dee0ee;
-  text-decoration: none;
-  text-align: center;
-  line-height: 23px;
-  color: black;
-}
-.quantity__minus:hover,
-.quantity__plus:hover {
-  background: #575b71;
-  color: #fff;
-}
-.quantity__minus {
-  border-radius: 3px 0 0 3px;
-}
-.quantity__plus {
-  border-radius: 0 3px 3px 0;
-}
-.quantity__input {
-  width: 35px;
-  height: 20px;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  border-top: 2px solid #dee0ee;
-  border-bottom: 2px solid #dee0ee;
-  border-left: 1px solid #dee0ee;
-  border-right: 2px solid #dee0ee;
-  background: #fff;
-  color: #8184a1;
-}
-.quantity__minus:link,
-.quantity__plus:link {
-  color: #8184a1;
-}
-
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 2; /* Sit on top */
-  padding-top: 300px; /* Location of the box */
+  padding-top: 80px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -152,7 +111,7 @@ input.empty {
 }
 @media screen and (min-width: 768px) {
   .modal {
-    padding-top: 150px;
+    padding-top: 100px;
   }
 }
 
@@ -213,7 +172,7 @@ input.empty {
 
 .modal-body {
   padding: 2px 16px;
-  height: 50%;
+  height: 25rem;
   overflow-y: auto;
 }
 
@@ -226,8 +185,6 @@ input.empty {
 .bg-navbar {
   background-color: #cccccc;
 }
-
-
 
 .pay_pop {
   display: none; /* Hidden by default */
@@ -263,58 +220,136 @@ input.empty {
 }
 
 /*space*/
-tabspace { padding-right: 4em; }
-
-
+tabspace {
+  padding-right: 4em;
+}
 
 /*button bayar*/
-li .paybut{
-	display:inline-block;
-	padding:0.3em 1em;
-	margin:0 0.5em 0.3em 1em;
-	border-radius:0.15em;	
-	box-sizing: border-box;
-	text-decoration:none;
-	font-family:'Roboto',sans-serif;
-	text-transform:uppercase;
-	font-weight:400;
-	color:#FFFFFF;
-	background-color:#3369ff;
-	box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
-	text-align:center;
-	position:relative;
-	float: right;
+li .paybut {
+  display: inline-block;
+  padding: 0.3em 1em;
+  margin: 0 0.5em 0.3em 1em;
+  border-radius: 0.15em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #ffffff;
+  background-color: #3369ff;
+  box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);
+  text-align: center;
+  position: relative;
 }
-li .paybut:active{
-	top:0.1em;
+li .paybut:active {
+  top: 0.1em;
 }
 
-@media all and (max-width: 30em){
-li .paybut{
-	display:block;
-	margin:0.4em auto;
-	}
+@media all and (max-width: 30em) {
+  li .paybut {
+    display: block;
+    margin: 0.4em auto;
+  }
 }
 .pay_cash {
-	display: none;
+  display: none;
 }
 .pay_ewallet {
-	display: none;
+  display: none;
 }
 .pay_edc {
-	display: none;
+  display: none;
 }
 
-.ewallet_method, .edc_method {
-	display: inline-table;
+.ewallet_method,
+.edc_method {
+  display: inline-table;
 }
 
 .ewallet_method li {
-	margin-left: 30px;
-	margin-right: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .ewallet_method img {
-	width: 125px;
-	height: 35px;
+  width: 125px;
+  height: 35px;
+}
+
+/*Popup Menu*/
+
+.square {
+  display: inline-block;
+  padding: 15px 30px;
+  width: 170px;
+  height: auto;
+  background-color: rgb(179, 178, 178);
+  left: 0;
+  top: 0;
+}
+@media screen and (max-width: 768px) {
+  .square {
+    display: block;
+    width: 110px;
+    height: auto;
+  }
+  .t-area {
+    width: 200px;
+    height: 100px;
+  }
+  .inc-dec {
+    max-width: 50px;
+  }
+}
+
+.inc-dec {
+  max-width: 100px;
+}
+
+.square:hover {
+  background-color: rgb(129, 129, 129);
+}
+.inc-dec:hover {
+  background-color: rgb(129, 129, 129);
+}
+
+/*======================================= Index Page ==========================================================*/
+.card {
+  max-width: 40%;
+  margin-bottom: auto;
+  margin-top: auto;
+}
+.card-body .row {
+  margin: 10px 10px;
+}
+
+.nav-footer {
+  padding: 0.75rem;
+  padding-top: 4rem;
+  flex-shrink: 0;
+}
+
+a.button3 {
+  display: block;
+  padding: 0.5em;
+  margin: 0.3em 0.3em 0.3em 16rem;
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  font-weight: 500;
+  background-color: #f85f5f;
+  text-align: center;
+  transition: all 0.4s;
+}
+a.button3:hover {
+  background-color: #444444;
+  color: white;
+}
+@media screen and (max-width: 740px) {
+  a.button3 {
+    display: block;
+    margin: 0.2em auto;
+  }
 }
