@@ -112,8 +112,20 @@
 						</ul>
 						<div align="right" class="mt-4 mb-3 confirm3" style="display:none"><input type="button" value="Confirm Payment" onclick="confirmpay2()"></div>
 					</div>
-				</div>
+					<<<<<<< HEAD </div> </div> </div> <!-- <a class="paybut" style="background-color:#f14e4e">Confirm</a>-->
+	</header>
+	=======
+	</div>
+	</div>
+	</div>
+	<div id="payprocess" class="payprocess">
+		<div class="payprocess-content">
+			<div class="modal-body" align="center">
+				<p alig class="mt-2">PAYMENT IN PROCESS</p>
+				<img src="img/loading.gif">
 			</div>
 		</div>
-		<!--		<a class = "paybut" style="background-color:#f14e4e">Confirm</a>-->
+	</div>
+
 	</header>
+	>>>>>>> 65c51b94462e22c4cef3264d4a7e8354ea8b55d0
