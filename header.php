@@ -28,9 +28,10 @@
             </nav>
         </nav>
         <nav class="navbar fixed-top navbar-light bg-navbar" style="z-index: 1">
-            <ul class="navbar-nav ml-auto">
+			<ul class="navbar-nav ml-auto">
                 <li class="nav-item">Total</li>
                 <li class="nav-item" id="rupiah">Rp. 0</li>
+				
             </ul>
 			<li class="list-unstyled nav-item">
 			<input type = "button" class = "paybut" value = "confirm" style="background-color:#f14e4e">
@@ -98,5 +99,13 @@
                 </div>
             </div>
         </div>
-<!--		<a class = "paybut" style="background-color:#f14e4e">Confirm</a>-->
+		<div id="payprocess" class="payprocess">
+            <div class="payprocess-content">
+                <div class="modal-body" align="center">
+					<p alig class="mt-2">PAYMENT IN PROCESS</p>
+					<img src="img/loading.gif">
+				</div>
+			</div>
+		</div>
+		
     </header>
