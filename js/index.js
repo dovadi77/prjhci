@@ -124,21 +124,23 @@ $('#bca, #bni, #mandiri').on("click",function(){
 		$(".confirm3").css("display", "block");
 	}
 });
+
 function confirmpay(id) {
 	var beli = document.getElementById(id);
 	var bayar = document.getElementById('cashpay');
 }
+
+//jeda 2 detik
 function confirmpay2(){
-	if ($('#ovo, #gopay').is(':checked') && $('#pnum') === null ){
-		alert("Please Insert Phone Number!");
-	}
-	else {
+	$('.payprocess').css("display", "block");
+	var proses = setTimeout(function(){
 		alert("Pembelian telah diproses!");
 		$('#ewallet, #edc, #ovo, #dana, #gopay, #bca, #bni, #mandiri').prop('checked', false);
 		$(".pay_cash, .pay_ewallet, .pay_edc").css("display", "none");
 		$(".pnum").css("display", "none");
 		$('#pnum, #cashpay').val(null);
 		$('#pay_pop').hide();
-	}
+		$('#payprocess').hide();
+	}, 2000);
 }
 
