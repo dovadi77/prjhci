@@ -116,9 +116,9 @@
 					<!-- <a class="paybut" style="background-color:#f14e4e">Confirm</a>-->
 					<div id="payprocess" class="payprocess">
 						<div class="payprocess-content">
-							<div class="modal-body" align="center">
-								<p alig class="mt-2">PAYMENT IN PROCESS</p>
-								<img src="img/loading.gif">
+							<div class="modal-body" align="center" style="background-color: aquamarine;">
+								<p class="mt-2 mb-5">PAYMENT IN PROCESS</p>
+								<img src="img/25.gif" class="mt-5">
 								<h1 class="ml8">
 									<span class="letters-container">
 										<span class="letters bang">✔</span>

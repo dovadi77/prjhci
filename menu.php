@@ -16,7 +16,7 @@ $data = showDataMenu($con, "menu", "coffee");
                     <div class="modal-content">
                         <div class="modal-header">
                             <h3><?php echo $row['nama']; ?></h3>
-                            <span class="close" id="closex">&times;</span>
+                            <span class="close" name="close" id="<?php echo $row['id'] ?>">&times;</span>
                         </div>
                         <div class="modal-body">
                             <div class="container">
@@ -24,59 +24,44 @@ $data = showDataMenu($con, "menu", "coffee");
                                 <div class="row">
                                     <div class="btn-group m-auto" data-toggle="buttons">
                                         <label class="btn btn-primary btn-lg square">
-                                            <input type="radio" name="variant" id="hot" hidden>HOT
+                                            <input type="radio" name="variant" id="hot" value="hot" hidden>HOT
                                         </label>
                                         <label class="btn btn-primary btn-lg square">
-                                            <input type="radio" name="variant" id="ice" hidden>ICE
+                                            <input type="radio" name="variant" id="ice" value="ice" hidden>ICE
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="container">
-                                <h3>Quantitiy</h3>
+                                <h3>Quantity</h3>
                                 <div class="row">
                                     <div class="m-auto">
                                         <span><button type="button" class="btn square inc-dec" onclick="less('<?php echo $row['id']; ?>', '<?php echo $row['harga']; ?>')">-</button></span>
-                                        <span id="quantity<?php echo $row['id']; ?>" class="m-4">1</span>
+                                        <span id="quantity<?php echo $row['id']; ?>" class="m-4">0</span>
                                         <span><button type="button" class="btn square inc-dec" onclick="add('<?php echo $row['id']; ?>', '<?php echo $row['harga']; ?>')">+</button></span>
                                     </div>
                                 </div>
                             </div>
-                            <!-- <label class="tombol">
-                                <input type="button" onclick="less()">
-                                <span class="square">
-                                    <p>-</p>
-                                </span>
-                            </label>
-                            <div class="tombol">
-                                <p id="quantity">0</p>
-                            </div>
-                            <label class="tombol">
-                                <input type="button" onclick="add()">
-                                <span class="square">
-                                    <p>+</p>
-                                </span>
-                            </label> -->
                             <div class="container">
                                 <h3>Sales Type</h3>
                                 <div class="row">
                                     <div class="btn-group m-auto" data-toggle="buttons">
                                         <label class="btn btn-primary btn-lg square">
-                                            <input type="radio" name="variant" id="hot" hidden>DINE IN
+                                            <input type="radio" name="sales" value="dinein" hidden>DINE IN
                                         </label>
                                         <label class="btn btn-primary btn-lg square">
-                                            <input type="radio" name="variant" id="ice" hidden>TAKE AWAY
+                                            <input type="radio" name="sales" value="takeaway" hidden>TAKE AWAY
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="container">
                                 <h3>Note</h3>
-                                <textarea rows="8" cols="40" class="t-area"></textarea>
+                                <textarea rows="8" cols="40" class="t-area" id="<?php echo $row['id']; ?>"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <h3>Modal Footer</h3>
+                            <span class="add">ADD</span>
                         </div>
                     </div>
                 </div>
@@ -98,18 +83,57 @@ $data = showDataMenu($con, "menu", "coffee");
                     <!-- Modal content -->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h2><?php echo $row['nama']; ?></h2>
-                            <span class="close" id="closex">&times;</span>
+                            <h3><?php echo $row['nama']; ?></h3>
+                            <span class="close" name="close" id="<?php echo $row['id'] ?>">&times;</span>
                         </div>
                         <div class="modal-body">
-                            <p>Some text in the Modal Body</p>
-                            <p>Some other text...</p>
+                            <div class="container">
+                                <h3>Varieties</h3>
+                                <div class="row">
+                                    <div class="btn-group m-auto" data-toggle="buttons">
+                                        <label class="btn btn-primary btn-lg square">
+                                            <input type="radio" name="variant" id="hot" value="hot" hidden>HOT
+                                        </label>
+                                        <label class="btn btn-primary btn-lg square">
+                                            <input type="radio" name="variant" id="ice" value="ice" hidden>ICE
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <h3>Quantity</h3>
+                                <div class="row">
+                                    <div class="m-auto">
+                                        <span><button type="button" class="btn square inc-dec" onclick="less('<?php echo $row['id']; ?>', '<?php echo $row['harga']; ?>')">-</button></span>
+                                        <span id="quantity<?php echo $row['id']; ?>" class="m-4">0</span>
+                                        <span><button type="button" class="btn square inc-dec" onclick="add('<?php echo $row['id']; ?>', '<?php echo $row['harga']; ?>')">+</button></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <h3>Sales Type</h3>
+                                <div class="row">
+                                    <div class="btn-group m-auto" data-toggle="buttons">
+                                        <label class="btn btn-primary btn-lg square">
+                                            <input type="radio" name="sales" value="dinein" hidden>DINE IN
+                                        </label>
+                                        <label class="btn btn-primary btn-lg square">
+                                            <input type="radio" name="sales" value="takeaway" hidden>TAKE AWAY
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <h3>Note</h3>
+                                <textarea rows="8" cols="40" class="t-area" id="<?php echo $row['id']; ?>"></textarea>
+                            </div>
                         </div>
                         <div class="modal-footer">
-                            <h3>Modal Footer</h3>
+                            <span class="add">ADD</span>
                         </div>
                     </div>
                 </div>
+
             <?php } ?>
         </ul>
     </div>
@@ -131,18 +155,57 @@ $data = showDataMenu($con, "menu", "coffee");
                     <!-- Modal content -->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h2><?php echo $row['nama']; ?></h2>
-                            <span class="close" id="closex">&times;</span>
+                            <h3><?php echo $row['nama']; ?></h3>
+                            <span class="close" name="close" id="<?php echo $row['id'] ?>">&times;</span>
                         </div>
                         <div class="modal-body">
-                            <p>Some text in the Modal Body</p>
-                            <p>Some other text...</p>
+                            <div class="container" hidden>
+                                <h3>Varieties</h3>
+                                <div class="row">
+                                    <div class="btn-group m-auto" data-toggle="buttons">
+                                        <label class="btn btn-primary btn-lg square">
+                                            <input type="radio" name="variant" id="hot" value="hot" hidden>HOT
+                                        </label>
+                                        <label class="btn btn-primary btn-lg square">
+                                            <input type="radio" name="variant" id="ice" value="ice" hidden>ICE
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <h3>Quantity</h3>
+                                <div class="row">
+                                    <div class="m-auto">
+                                        <span><button type="button" class="btn square inc-dec" onclick="less('<?php echo $row['id']; ?>', '<?php echo $row['harga']; ?>')">-</button></span>
+                                        <span id="quantity<?php echo $row['id']; ?>" class="m-4">0</span>
+                                        <span><button type="button" class="btn square inc-dec" onclick="add('<?php echo $row['id']; ?>', '<?php echo $row['harga']; ?>')">+</button></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <h3>Sales Type</h3>
+                                <div class="row">
+                                    <div class="btn-group m-auto" data-toggle="buttons">
+                                        <label class="btn btn-primary btn-lg square">
+                                            <input type="radio" name="sales" value="dinein" hidden>DINE IN
+                                        </label>
+                                        <label class="btn btn-primary btn-lg square">
+                                            <input type="radio" name="sales" value="takeaway" hidden>TAKE AWAY
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <h3>Note</h3>
+                                <textarea rows="8" cols="40" class="t-area" id="<?php echo $row['id']; ?>"></textarea>
+                            </div>
                         </div>
                         <div class="modal-footer">
-                            <h3>Modal Footer</h3>
+                            <span class="add">ADD</span>
                         </div>
                     </div>
                 </div>
+
             <?php } ?>
         </ul>
     </div>
@@ -161,15 +224,53 @@ $data = showDataMenu($con, "menu", "coffee");
                     <!-- Modal content -->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h2><?php echo $row['nama']; ?></h2>
-                            <span class="close" id="closex">&times;</span>
+                            <h3><?php echo $row['nama']; ?></h3>
+                            <span class="close" name="close" id="<?php echo $row['id'] ?>">&times;</span>
                         </div>
                         <div class="modal-body">
-                            <p>Some text in the Modal Body</p>
-                            <p>Some other text...</p>
+                            <div class="container" hidden>
+                                <h3>Varieties</h3>
+                                <div class="row">
+                                    <div class="btn-group m-auto" data-toggle="buttons">
+                                        <label class="btn btn-primary btn-lg square">
+                                            <input type="radio" name="variant" id="hot" value="hot" hidden>HOT
+                                        </label>
+                                        <label class="btn btn-primary btn-lg square">
+                                            <input type="radio" name="variant" id="ice" value="ice" hidden>ICE
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <h3>Quantity</h3>
+                                <div class="row">
+                                    <div class="m-auto">
+                                        <span><button type="button" class="btn square inc-dec" onclick="less('<?php echo $row['id']; ?>', '<?php echo $row['harga']; ?>')">-</button></span>
+                                        <span id="quantity<?php echo $row['id']; ?>" class="m-4">0</span>
+                                        <span><button type="button" class="btn square inc-dec" onclick="add('<?php echo $row['id']; ?>', '<?php echo $row['harga']; ?>')">+</button></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <h3>Sales Type</h3>
+                                <div class="row">
+                                    <div class="btn-group m-auto" data-toggle="buttons">
+                                        <label class="btn btn-primary btn-lg square">
+                                            <input type="radio" name="sales" value="dinein" hidden>DINE IN
+                                        </label>
+                                        <label class="btn btn-primary btn-lg square">
+                                            <input type="radio" name="sales" value="takeaway" hidden>TAKE AWAY
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <h3>Note</h3>
+                                <textarea rows="8" cols="40" class="t-area" id="<?php echo $row['id']; ?>"></textarea>
+                            </div>
                         </div>
                         <div class="modal-footer">
-                            <h3>Modal Footer</h3>
+                            <span class="add">ADD</span>
                         </div>
                     </div>
                 </div>
@@ -194,18 +295,57 @@ $data = showDataMenu($con, "menu", "coffee");
                     <!-- Modal content -->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h2><?php echo $row['nama']; ?></h2>
-                            <span class="close" id="closex">&times;</span>
+                            <h3><?php echo $row['nama']; ?></h3>
+                            <span class="close" name="close" id="<?php echo $row['id'] ?>">&times;</span>
                         </div>
                         <div class="modal-body">
-                            <p>Some text in the Modal Body</p>
-                            <p>Some other text...</p>
+                            <div class="container" hidden>
+                                <h3>Varieties</h3>
+                                <div class="row">
+                                    <div class="btn-group m-auto" data-toggle="buttons">
+                                        <label class="btn btn-primary btn-lg square">
+                                            <input type="radio" name="variant" id="hot" value="hot" hidden>HOT
+                                        </label>
+                                        <label class="btn btn-primary btn-lg square">
+                                            <input type="radio" name="variant" id="ice" value="ice" hidden>ICE
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <h3>Quantity</h3>
+                                <div class="row">
+                                    <div class="m-auto">
+                                        <span><button type="button" class="btn square inc-dec" onclick="less('<?php echo $row['id']; ?>', '<?php echo $row['harga']; ?>')">-</button></span>
+                                        <span id="quantity<?php echo $row['id']; ?>" class="m-4">0</span>
+                                        <span><button type="button" class="btn square inc-dec" onclick="add('<?php echo $row['id']; ?>', '<?php echo $row['harga']; ?>')">+</button></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <h3>Sales Type</h3>
+                                <div class="row">
+                                    <div class="btn-group m-auto" data-toggle="buttons">
+                                        <label class="btn btn-primary btn-lg square">
+                                            <input type="radio" name="sales" value="dinein" hidden>DINE IN
+                                        </label>
+                                        <label class="btn btn-primary btn-lg square">
+                                            <input type="radio" name="sales" value="takeaway" hidden>TAKE AWAY
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <h3>Note</h3>
+                                <textarea rows="8" cols="40" class="t-area" id="<?php echo $row['id']; ?>"></textarea>
+                            </div>
                         </div>
                         <div class="modal-footer">
-                            <h3>Modal Footer</h3>
+                            <span class="add">ADD</span>
                         </div>
                     </div>
                 </div>
+
             <?php } ?>
         </ul>
     </div>

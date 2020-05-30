@@ -164,6 +164,21 @@ input.empty {
   cursor: pointer;
 }
 
+/* Add Button */
+.add {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.add:hover,
+.add:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .modal-header {
   padding: 2px 16px;
   background-color: #5cb85c;

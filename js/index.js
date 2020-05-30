@@ -30,9 +30,7 @@ function calculateTotal(id) {
   var doc = document.getElementById(id);
   if (doc.classList.contains("selected")) {
     doc.classList.remove("selected");
-    val -= parseInt(doc.getAttribute("data-value"));
   } else {
-    val += parseInt(doc.getAttribute("data-value"));
     doc.classList.add("selected");
   }
   rupiah.innerHTML = formatRupiah(val, "Rp. ");
@@ -56,18 +54,67 @@ function formatRupiah(angka, prefix) {
   rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
   return prefix == undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
 }
+
+var id = "";
+var curQty = 0;
 // Get the button that opens the modal
 $("li[id]").on("click", function () {
-  var id = $(this).attr("id");
+  id = $(this).attr("id");
   $("#myModal" + id).css("display", "block");
-  calculateTotal(id);
+  curQty = parseInt($("span[id='quantity" + id + "']").html());
 });
 
-// When the user clicks the button, close the modal
-$("span[class^='close']").on("click", function () {
+// When the user clicks the button, close the modal + if there any change in modal after click x button undo or cancel that change
+$("span[name]").on("click", function () {
   $("div[class='modal']").css("display", "none");
-  $("#total").html(formatRupiah(val, "Rp. "));
-  count = 1;
+  var clsQty = parseInt($("span[id='quantity" + id + "']").html());
+  if (curQty != clsQty) {
+    var result = curQty - clsQty;
+    if (result < 0) {
+      //hasil nya minus makanya jd +
+      val = val + result * cPrice;
+    } else {
+      val = val + Math.abs(result * cPrice);
+    }
+    $("span[id='quantity" + id + "']").html(curQty);
+  }
+  if (curQty > 0) {
+    if ($("li[id='" + id + "']").hasClass("selected") == false)
+      $("li[id='" + id + "']").addClass("selected");
+  } else {
+    $("li[id='" + id + "']").removeClass("selected");
+  }
+  $("#rupiah").html(formatRupiah(val, "Rp. "));
+});
+
+var variant_arr = [];
+var sales_arr = [];
+var add_arr = [];
+var qty_arr = [];
+var val_arr = [];
+var menu_arr = [];
+//close modal when add click and verify the input, also append data to array for sending
+$("span[class^='add']").on("click", function () {
+  var variant = $("input[name='variant']:checked").val();
+  var sales = $("input[name='sales']:checked").val();
+  var add = $("textarea[id='" + id + "']").val();
+  var patt = /c/;
+  if (count > 0) {
+    if (variant == null || sales == null) {
+      alert("Please input correctly");
+    } else {
+      $("div[class='modal']").css("display", "none");
+      val_arr.push(cPrice * count);
+      variant_arr.push(variant);
+      add_arr.push(add);
+      sales_arr.push(sales);
+      qty_arr.push(count);
+      menu_arr.push(id);
+    }
+  } else {
+    alert("Please use button X if nothing to input");
+  }
+  $("#rupiah").html(formatRupiah(val, "Rp. "));
 });
 
 //get button that open payment
@@ -76,12 +123,14 @@ $(".paybut").on("click", function () {
     alert("Menu not selected");
     return;
   }
+  $("#total").html(formatRupiah(val, "Rp. "));
   $("#pay_pop").css("display", "block");
 });
 
 // When the user clicks the button, open the payment
-$("span[class^='close']").on("click", function () {
+$("#closex").on("click", function () {
   $("#pay_pop").css("display", "none");
+  console.log("lalalaal");
 });
 
 //payment method selection
@@ -139,10 +188,10 @@ function confirmpay(id) {
   }
 }
 
-//jeda 2 detik
+//after confirm
 function confirmpay2() {
   $(".payprocess").css("display", "block");
-  var proses = setTimeout(function () {
+  setTimeout(function () {
     $("#ewallet, #edc, #ovo, #dana, #gopay, #bca, #bni, #mandiri").prop(
       "checked",
       false
@@ -150,7 +199,7 @@ function confirmpay2() {
     $(".pay_cash, .pay_ewallet, .pay_edc").css("display", "none");
     $(".pnum").css("display", "none");
     $("#pnum, #cashpay").val(null);
-  }, 2000);
+  }, 3000);
   anime
     .timeline({ loop: false })
     .add({
@@ -185,7 +234,7 @@ function confirmpay2() {
       targets: ".ml8 .bang",
       scale: [0, 1],
       rotateZ: [45, 0],
-      duration: 5000,
+      duration: 2000,
       offset: "-=1000",
     })
     .add({
@@ -207,23 +256,31 @@ function confirmpay2() {
     $("#pay_pop").hide();
     $("#payprocess").hide();
     window.location.href = "index.html";
-  }, 6000);
+  }, 3000);
 }
-
+var count = 0;
+var cPrice = 0;
 //increment decrement
-var count = 1;
 function add(id, price) {
-  price = parseInt(price);
-  count++;
   var quan = document.getElementById("quantity" + id);
+  count = parseInt(quan.innerHTML);
+  price = parseInt(price);
+  cPrice = price;
+  count++;
   val += price;
   quan.innerHTML = count;
-  console.log(val);
+  if (count > 0) {
+    $("li[id='" + id + "']").addClass("selected");
+  } else {
+    $("li[id='" + id + "']").removeClass("selected");
+  }
 }
 
 function less(id, price) {
   price = parseInt(price);
+  cPrice = price;
   var quan = document.getElementById("quantity" + id);
+  count = parseInt(quan.innerHTML);
   if (count == 0) {
     return;
   } else {
@@ -231,5 +288,9 @@ function less(id, price) {
   }
   val -= price;
   quan.innerHTML = count;
-  console.log(val);
+  if (count > 0) {
+    $("li[id='" + id + "']").addClass("selected");
+  } else {
+    $("li[id='" + id + "']").removeClass("selected");
+  }
 }
