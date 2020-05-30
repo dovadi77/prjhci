@@ -10,6 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
 	<script src="https://kit.fontawesome.com/661db8639e.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 	<link rel="stylesheet" href="css/style.css" />
 	<title>Boss Coffee</title>
 	<link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
@@ -69,7 +70,7 @@
 					</label>
 					<div class="pay_cash" id="pay_cash">
 						<tabspace>CASH:</tabspace>
-						<input type="number" id="cashpay">
+						<input type="number" id="cashpay" required>
 						<div align="right" class="mt-4 mb-3 confirm" style="display:none"><input type="button" value="Confirm Payment" onclick="confirmpay()"></div>
 					</div>
 					<div class="pay_ewallet">
@@ -90,7 +91,7 @@
 						</ul>
 						<div class="pnum" style='display: none'>
 							<tabspace>Phone Number:</tabspace>
-							<input type="number" id="pnumber">
+							<input type="number" id="pnumber" required>
 						</div>
 						<div align="right" class="mt-4 mb-3 confirm2" style="display:none"><input type="button" value="Confirm Payment" onclick="confirmpay2()"></div>
 					</div>
@@ -118,6 +119,14 @@
 							<div class="modal-body" align="center">
 								<p alig class="mt-2">PAYMENT IN PROCESS</p>
 								<img src="img/loading.gif">
+								<h1 class="ml8">
+									<span class="letters-container">
+										<span class="letters bang">✔</span>
+									</span>
+									<span class="circle circle-white"></span>
+									<span class="circle circle-dark"></span>
+									<span class="circle circle-container"><span class="circle circle-dark-dashed"></span></span>
+								</h1>
 							</div>
 						</div>
 					</div>

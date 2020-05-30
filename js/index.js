@@ -133,21 +133,9 @@ $("#bca, #bni, #mandiri").on("click", function () {
 
 function confirmpay(id) {
   var beli = document.getElementById(id);
-  var bayar = document.getElementById("cashpay");
-}
-function confirmpay2() {
-  if ($("#ovo, #gopay").is(":checked") && $("#pnum") === null) {
-    alert("Please Insert Phone Number!");
-  } else {
-    alert("Pembelian telah diproses!");
-    $("#ewallet, #edc, #ovo, #dana, #gopay, #bca, #bni, #mandiri").prop(
-      "checked",
-      false
-    );
-    $(".pay_cash, .pay_ewallet, .pay_edc").css("display", "none");
-    $(".pnum").css("display", "none");
-    $("#pnum, #cashpay").val(null);
-    $("#pay_pop").hide();
+  var bayar = parseInt(document.getElementById("cashpay").value);
+  if (bayar >= val) {
+    alert("Pembayaran berhasil!");
   }
 }
 
@@ -155,7 +143,6 @@ function confirmpay2() {
 function confirmpay2() {
   $(".payprocess").css("display", "block");
   var proses = setTimeout(function () {
-    alert("Pembelian telah diproses!");
     $("#ewallet, #edc, #ovo, #dana, #gopay, #bca, #bni, #mandiri").prop(
       "checked",
       false
@@ -163,9 +150,64 @@ function confirmpay2() {
     $(".pay_cash, .pay_ewallet, .pay_edc").css("display", "none");
     $(".pnum").css("display", "none");
     $("#pnum, #cashpay").val(null);
+  }, 2000);
+  anime
+    .timeline({ loop: false })
+    .add({
+      targets: ".ml8 .circle-white",
+      scale: [0, 3],
+      opacity: [1, 0],
+      easing: "easeInOutExpo",
+      rotateZ: 360,
+      duration: 1100,
+    })
+    .add({
+      targets: ".ml8 .circle-container",
+      scale: [0, 1],
+      duration: 1100,
+      easing: "easeInOutExpo",
+      offset: "-=1000",
+    })
+    .add({
+      targets: ".ml8 .circle-dark",
+      scale: [0, 1],
+      duration: 1100,
+      easing: "easeOutExpo",
+      offset: "-=600",
+    })
+    .add({
+      targets: ".ml8 .letters-left",
+      scale: [0, 1],
+      duration: 1200,
+      offset: "-=550",
+    })
+    .add({
+      targets: ".ml8 .bang",
+      scale: [0, 1],
+      rotateZ: [45, 0],
+      duration: 5000,
+      offset: "-=1000",
+    })
+    .add({
+      targets: ".ml8",
+      opacity: 0,
+      duration: 1000,
+      easing: "easeOutExpo",
+      delay: 1400,
+    });
+
+  anime({
+    targets: ".ml8 .circle-dark-dashed",
+    rotateZ: 360,
+    duration: 8000,
+    easing: "linear",
+    loop: true,
+  });
+  setTimeout(function () {
     $("#pay_pop").hide();
     $("#payprocess").hide();
-  }, 2000);
+    window.location.href = "index.html";
+  }, 6000);
 }
 
 //increment decrement
