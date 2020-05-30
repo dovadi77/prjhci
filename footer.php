@@ -2,7 +2,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="js/index.js"></script>
 <script>
     $(document).ready(function() {
@@ -33,25 +32,6 @@
                 });
             } // End if
         });
-        const minus = $('.quantity__minus');
-        const plus = $('.quantity__plus');
-        const input = $('.quantity__input');
-        minus.click(function(e) {
-            e.preventDefault();
-            var value = input.val();
-            if (value > 1) {
-                value--;
-            }
-            input.val(value);
-        });
-
-        plus.click(function(e) {
-            e.preventDefault();
-            var value = input.val();
-            value++;
-            input.val(value);
-        })
-
     });
 </script>
 
