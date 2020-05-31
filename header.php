@@ -71,7 +71,8 @@
 					<div class="pay_cash" id="pay_cash">
 						<tabspace>CASH:</tabspace>
 						<input type="number" id="cashpay" required>
-						<div align="right" class="mt-4 mb-3 confirm" style="display:none"><input type="button" value="Confirm Payment" onclick="confirmpay()"></div>
+						<div id="showRp" class="mt-5 mb-5">Rp. 0</div>
+						<div align=" right" class="mt-4 mb-3 confirm" style="display:none"><input type="button" value="Confirm Payment" onclick="confirmpay()"></div>
 					</div>
 					<div class="pay_ewallet">
 						Select E-Wallet:
@@ -118,7 +119,7 @@
 						<div class="payprocess-content">
 							<div class="modal-body" align="center" style="background-color: aquamarine;">
 								<p class="mt-2 mb-5">PAYMENT IN PROCESS</p>
-								<img src="img/25.gif" class="mt-5">
+								<img src="img/25.gif" class="mt-5" id="loadinggif">
 								<h1 class="ml8">
 									<span class="letters-container">
 										<span class="letters bang">✔</span>

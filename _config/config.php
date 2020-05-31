@@ -27,6 +27,30 @@ function showDataMenu($con, $table, $tipe)
     return $data;
 }
 
+function addTransaction($con, $cashier_id, $payment, $nominal_beli, $nominal_bayar)
+{
+    $stmt = $con->prepare("INSERT INTO transaksi (cashier_id, payment, nominal_beli, nominal_bayar, waktu) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP())");
+    $stmt->bind_param("isss", $cashier_id, $payment, $nominal_beli, $nominal_bayar);
+    if ($stmt->execute()) {
+        echo "success";
+    } else {
+        echo "errorasasas";
+    }
+    $stmt->close();
+}
+
+function addTransactionMenu($con, $order_id, $menu_id, $variety, $add_info, $quantity, $sales)
+{
+    $stmt = $con->prepare("INSERT INTO transkasi_detail (order_id, menu_id, variety, add_info, quantity, sales) VALUES (?, ?, ?, ?, ?, ?");
+    $stmt->bind_param("isssis", $order_id, $menu_id, $variety, $add_info, $quantity, $sales);
+    if ($stmt->execute()) {
+        echo "success";
+    } else {
+        echo "error";
+    }
+    $stmt->close();
+}
+
 function toRupiah($nominal)
 {
     return "Rp. " . number_format($nominal, 0, ',', '.');

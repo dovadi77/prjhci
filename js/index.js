@@ -180,11 +180,82 @@ $("#bca, #bni, #mandiri").on("click", function () {
   }
 });
 
+$("#cashpay").keyup(function () {
+  var rp = $(this);
+  $("#showRp").html(formatRupiah(rp.val(), "Rp. "));
+});
+
 function confirmpay(id) {
   var beli = document.getElementById(id);
   var bayar = parseInt(document.getElementById("cashpay").value);
   if (bayar >= val) {
-    alert("Pembayaran berhasil!");
+    $("#loadinggif").attr("hidden", true);
+    $(".payprocess").css("display", "block");
+    if (bayar - val > 0) {
+      alert("Kembalian " + formatRupiah(bayar - val, "Rp. "));
+    }
+    if (sendDatatoPHP() == "ok") {
+      alert("ok");
+    }
+    anime
+      .timeline({ loop: true })
+      .add({
+        targets: ".ml8 .circle-white",
+        scale: [0, 3],
+        opacity: [1, 0],
+        easing: "easeInOutExpo",
+        rotateZ: 360,
+        duration: 1100,
+      })
+      .add({
+        targets: ".ml8 .circle-container",
+        scale: [0, 1],
+        duration: 1100,
+        easing: "easeInOutExpo",
+        offset: "-=1000",
+      })
+      .add({
+        targets: ".ml8 .circle-dark",
+        scale: [0, 1],
+        duration: 1100,
+        easing: "easeOutExpo",
+        offset: "-=600",
+      })
+      .add({
+        targets: ".ml8 .letters-left",
+        scale: [0, 1],
+        duration: 1200,
+        offset: "-=550",
+      })
+      .add({
+        targets: ".ml8 .bang",
+        scale: [0, 1],
+        rotateZ: [45, 0],
+        duration: 2000,
+        offset: "-=1000",
+      })
+      .add({
+        targets: ".ml8",
+        opacity: 0,
+        duration: 1000,
+        easing: "easeOutExpo",
+        delay: 1400,
+      });
+
+    anime({
+      targets: ".ml8 .circle-dark-dashed",
+      rotateZ: 360,
+      duration: 8000,
+      easing: "linear",
+      loop: true,
+    });
+    setTimeout(function () {
+      $("#pay_pop").hide();
+      $("#payprocess").hide();
+      window.location.href = "index.html";
+    }, 3000);
+  } else {
+    alert("Nominal uang kurang!!!");
   }
 }
 
@@ -293,4 +364,32 @@ function less(id, price) {
   } else {
     $("li[id='" + id + "']").removeClass("selected");
   }
+}
+
+function sendDatatoPHP() {
+  $.ajax({
+    type: "post",
+    url: "_config/data.php",
+    data: {
+      variant: variant_arr,
+      sales: sales_arr,
+      add: add_arr,
+      qty: qty_arr,
+      val: val_arr,
+      menu: menu_arr,
+      pay: val,
+    },
+    success: function (response) {
+      if (response == "success") {
+        return "ok";
+      } else if (response == "error") {
+        alert("Error in data!!");
+      } else {
+        alert(response);
+      }
+    },
+    error: function () {
+      alert("Server have trouble!!");
+    },
+  });
 }
