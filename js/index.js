@@ -380,9 +380,10 @@ function sendDatatoPHP() {
       pay: val,
     },
     success: function (response) {
-      if (response == "success") {
+      var patt = /success/g;
+      if (patt.test(response) == true) {
         return "ok";
-      } else if (response == "error") {
+      } else if (response == "errorerror") {
         alert("Error in data!!");
       } else {
         alert(response);

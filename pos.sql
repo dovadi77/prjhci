@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2020 at 04:25 PM
+-- Generation Time: May 31, 2020 at 02:06 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `pos`
 --
+CREATE DATABASE IF NOT EXISTS `pos` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `pos`;
 
 -- --------------------------------------------------------
 
@@ -28,12 +30,13 @@ SET time_zone = "+00:00";
 --
 
 DROP TABLE IF EXISTS `login`;
-CREATE TABLE `login` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `login` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(256) NOT NULL,
-  `nama` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nama` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `login`
@@ -49,11 +52,12 @@ INSERT INTO `login` (`id`, `username`, `password`, `nama`) VALUES
 --
 
 DROP TABLE IF EXISTS `menu`;
-CREATE TABLE `menu` (
+CREATE TABLE IF NOT EXISTS `menu` (
   `id` varchar(5) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `harga` varchar(50) NOT NULL,
-  `tipe` varchar(50) NOT NULL
+  `tipe` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -101,15 +105,24 @@ INSERT INTO `menu` (`id`, `nama`, `harga`, `tipe`) VALUES
 --
 
 DROP TABLE IF EXISTS `transaksi`;
-CREATE TABLE `transaksi` (
-  `id` int(11) NOT NULL,
-  `customer_id` varchar(5) NOT NULL,
+CREATE TABLE IF NOT EXISTS `transaksi` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `cashier_id` varchar(5) NOT NULL,
   `payment` varchar(50) NOT NULL,
   `nominal_beli` varchar(15) NOT NULL,
   `nominal_bayar` varchar(15) NOT NULL,
-  `waktu` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `waktu` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id`, `cashier_id`, `payment`, `nominal_beli`, `nominal_bayar`, `waktu`) VALUES
+(1, '1', 'cash', 'Rp. 45.000', 'Rp. 45.000', '2020-05-31 18:55:52'),
+(2, '1', 'cash', 'Rp. 65.000', 'Rp. 65.000', '2020-05-31 19:01:53'),
+(3, '1', 'cash', 'Rp. 72.000', 'Rp. 72.000', '2020-05-31 19:03:06');
 
 -- --------------------------------------------------------
 
@@ -118,63 +131,30 @@ CREATE TABLE `transaksi` (
 --
 
 DROP TABLE IF EXISTS `transaksi_detail`;
-CREATE TABLE `transaksi_detail` (
-  `transd_id` int(11) NOT NULL,
-  `order_id` varchar(5) NOT NULL,
+CREATE TABLE IF NOT EXISTS `transaksi_detail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) NOT NULL,
   `menu_id` varchar(5) NOT NULL,
+  `variety` varchar(20) NOT NULL,
   `add_info` text NOT NULL,
-  `quantity` int(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `quantity` int(11) NOT NULL,
+  `sales` varchar(15) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
--- Indexes for dumped tables
+-- Dumping data for table `transaksi_detail`
 --
 
---
--- Indexes for table `login`
---
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `menu`
---
-ALTER TABLE `menu`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `transaksi`
---
-ALTER TABLE `transaksi`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `transaksi_detail`
---
-ALTER TABLE `transaksi_detail`
-  ADD PRIMARY KEY (`transd_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `login`
---
-ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `transaksi`
---
-ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `transaksi_detail`
---
-ALTER TABLE `transaksi_detail`
-  MODIFY `transd_id` int(11) NOT NULL AUTO_INCREMENT;
+INSERT INTO `transaksi_detail` (`id`, `order_id`, `menu_id`, `variety`, `add_info`, `quantity`, `sales`) VALUES
+(1, 1, 'c1', 'ice', 'bababa', 1, 'takeaway'),
+(2, 1, 'c2', 'ice', 'qwerty', 1, 'dinein'),
+(3, 2, 'nc1', 'ice', '', 1, 'takeaway'),
+(4, 2, 'lm2', 'ice', '', 1, 'takeaway'),
+(5, 2, 'hm1', 'ice', '', 1, 'takeaway'),
+(6, 3, 'c1', 'hot', '', 1, 'takeaway'),
+(7, 3, 'nc5', 'ice', '', 1, 'dinein'),
+(8, 3, 'lm4', 'ice', '', 1, 'dinein');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

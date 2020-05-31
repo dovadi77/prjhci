@@ -34,14 +34,14 @@ function addTransaction($con, $cashier_id, $payment, $nominal_beli, $nominal_bay
     if ($stmt->execute()) {
         echo "success";
     } else {
-        echo "errorasasas";
+        echo "error";
     }
     $stmt->close();
 }
 
 function addTransactionMenu($con, $order_id, $menu_id, $variety, $add_info, $quantity, $sales)
 {
-    $stmt = $con->prepare("INSERT INTO transkasi_detail (order_id, menu_id, variety, add_info, quantity, sales) VALUES (?, ?, ?, ?, ?, ?");
+    $stmt = $con->prepare("INSERT INTO transaksi_detail (order_id, menu_id, variety, add_info, quantity, sales) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("isssis", $order_id, $menu_id, $variety, $add_info, $quantity, $sales);
     if ($stmt->execute()) {
         echo "success";

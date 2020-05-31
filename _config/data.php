@@ -10,6 +10,11 @@ if (isset($_POST['menu'])) {
     $pay = $_POST['pay'];
     $nom = toRupiah($pay);
     addTransaction($con, 1, "cash", $nom, $nom);
+    $data = mysqli_query($con, "SELECT * from transaksi");
+    $id = mysqli_num_rows($data);
+    for ($i = 0; $i < count($menu); $i++) {
+        addTransactionMenu($con, $id, $menu[$i], $variant[$i], $add[$i], $qty[$i], $sales[$i]);
+    }
 } else {
     echo "error";
 }
