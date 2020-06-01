@@ -299,19 +299,6 @@ $data = showDataMenu($con, "menu", "coffee");
                             <span class="close" name="close" id="<?php echo $row['id'] ?>">&times;</span>
                         </div>
                         <div class="modal-body">
-                            <div class="container" hidden>
-                                <h3>Varieties</h3>
-                                <div class="row">
-                                    <div class="btn-group m-auto" data-toggle="buttons">
-                                        <label class="btn btn-primary btn-lg square">
-                                            <input type="radio" name="variant" id="hot" value="hot" hidden>HOT
-                                        </label>
-                                        <label class="btn btn-primary btn-lg square">
-                                            <input type="radio" name="variant" id="ice" value="ice" hidden>ICE
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="container">
                                 <h3>Quantity</h3>
                                 <div class="row">

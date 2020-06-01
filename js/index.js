@@ -98,11 +98,16 @@ $("span[class^='add']").on("click", function () {
   var variant = $("input[name='variant']:checked").val();
   var sales = $("input[name='sales']:checked").val();
   var add = $("textarea[id='" + id + "']").val();
-  var patt = /c/;
+  var patt = /c/g;
   if (count > 0) {
-    if (variant == null || sales == null) {
+    if (variant == null || (sales == null && patt.test(id) == true)) {
+      alert("Please input correctly");
+    } else if (sales == null && patt.test(id) == false) {
       alert("Please input correctly");
     } else {
+      if (patt.test(id) == false) {
+        variant = null;
+      }
       $("div[class='modal']").css("display", "none");
       val_arr.push(cPrice * count);
       variant_arr.push(variant);
@@ -130,7 +135,6 @@ $(".paybut").on("click", function () {
 // When the user clicks the button, open the payment
 $("#closex").on("click", function () {
   $("#pay_pop").css("display", "none");
-  console.log("lalalaal");
 });
 
 //payment method selection
@@ -194,9 +198,9 @@ function confirmpay(id) {
     if (bayar - val > 0) {
       alert("Kembalian " + formatRupiah(bayar - val, "Rp. "));
     }
-    if (sendDatatoPHP() == "ok") {
-      alert("ok");
-    }
+    payment_method = "cash";
+    sendDatatoPHP();
+    console.log(response_ajax);
     anime
       .timeline({ loop: true })
       .add({
@@ -258,75 +262,79 @@ function confirmpay(id) {
     alert("Nominal uang kurang!!!");
   }
 }
-
+var payment_method = "";
 //after confirm
 function confirmpay2() {
   $(".payprocess").css("display", "block");
+  payment_method = $("input[name='pay']:checked").val();
+  $("#ewallet, #edc, #ovo, #dana, #gopay, #bca, #bni, #mandiri").prop(
+    "checked",
+    false
+  );
+  $(".pay_cash, .pay_ewallet, .pay_edc").css("display", "none");
+  $(".pnum").css("display", "none");
+  // $("#pnum, #cashpay").val(null);
+  $(".ml8").attr("hidden", true);
+  sendDatatoPHP();
   setTimeout(function () {
-    $("#ewallet, #edc, #ovo, #dana, #gopay, #bca, #bni, #mandiri").prop(
-      "checked",
-      false
-    );
-    $(".pay_cash, .pay_ewallet, .pay_edc").css("display", "none");
-    $(".pnum").css("display", "none");
-    $("#pnum, #cashpay").val(null);
-  }, 3000);
-  anime
-    .timeline({ loop: false })
-    .add({
-      targets: ".ml8 .circle-white",
-      scale: [0, 3],
-      opacity: [1, 0],
-      easing: "easeInOutExpo",
-      rotateZ: 360,
-      duration: 1100,
-    })
-    .add({
-      targets: ".ml8 .circle-container",
-      scale: [0, 1],
-      duration: 1100,
-      easing: "easeInOutExpo",
-      offset: "-=1000",
-    })
-    .add({
-      targets: ".ml8 .circle-dark",
-      scale: [0, 1],
-      duration: 1100,
-      easing: "easeOutExpo",
-      offset: "-=600",
-    })
-    .add({
-      targets: ".ml8 .letters-left",
-      scale: [0, 1],
-      duration: 1200,
-      offset: "-=550",
-    })
-    .add({
-      targets: ".ml8 .bang",
-      scale: [0, 1],
-      rotateZ: [45, 0],
-      duration: 2000,
-      offset: "-=1000",
-    })
-    .add({
-      targets: ".ml8",
-      opacity: 0,
-      duration: 1000,
-      easing: "easeOutExpo",
-      delay: 1400,
-    });
+    $(".ml8").attr("hidden", false);
+    anime
+      .timeline({ loop: false })
+      .add({
+        targets: ".ml8 .circle-white",
+        scale: [0, 3],
+        opacity: [1, 0],
+        easing: "easeInOutExpo",
+        rotateZ: 360,
+        duration: 1100,
+      })
+      .add({
+        targets: ".ml8 .circle-container",
+        scale: [0, 1],
+        duration: 1100,
+        easing: "easeInOutExpo",
+        offset: "-=1000",
+      })
+      .add({
+        targets: ".ml8 .circle-dark",
+        scale: [0, 1],
+        duration: 1100,
+        easing: "easeOutExpo",
+        offset: "-=600",
+      })
+      .add({
+        targets: ".ml8 .letters-left",
+        scale: [0, 1],
+        duration: 1200,
+        offset: "-=550",
+      })
+      .add({
+        targets: ".ml8 .bang",
+        scale: [0, 1],
+        rotateZ: [45, 0],
+        duration: 2000,
+        offset: "-=1000",
+      })
+      .add({
+        targets: ".ml8",
+        opacity: 0,
+        duration: 1000,
+        easing: "easeOutExpo",
+        delay: 1400,
+      });
 
-  anime({
-    targets: ".ml8 .circle-dark-dashed",
-    rotateZ: 360,
-    duration: 8000,
-    easing: "linear",
-    loop: true,
-  });
-  setTimeout(function () {
-    $("#pay_pop").hide();
-    $("#payprocess").hide();
-    window.location.href = "index.html";
+    anime({
+      targets: ".ml8 .circle-dark-dashed",
+      rotateZ: 360,
+      duration: 8000,
+      easing: "linear",
+      loop: false,
+    });
+    setTimeout(function () {
+      $("#pay_pop").hide();
+      $("#payprocess").hide();
+      window.location.href = "index.html";
+    }, 3000);
   }, 3000);
 }
 var count = 0;
@@ -366,6 +374,8 @@ function less(id, price) {
   }
 }
 
+var response_ajax = "";
+//Send data ke php kemudian diproses ke db
 function sendDatatoPHP() {
   $.ajax({
     type: "post",
@@ -378,12 +388,14 @@ function sendDatatoPHP() {
       val: val_arr,
       menu: menu_arr,
       pay: val,
+      payment: payment_method,
     },
     success: function (response) {
       var patt = /success/g;
+      var patt_err = /error/g;
       if (patt.test(response) == true) {
-        return "ok";
-      } else if (response == "errorerror") {
+        response_ajax = "ok";
+      } else if (patt_err.test(response) == true) {
         alert("Error in data!!");
       } else {
         alert(response);

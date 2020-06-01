@@ -78,15 +78,15 @@
 						Select E-Wallet:
 						<ul class="list-unstyled ewallet_method" id="id_ewallet">
 							<li>
-								<input type="radio" id="ovo" name="pay">
+								<input type="radio" value="ovo" id="ovo" name="pay">
 								<label for="pay"><img src="img/ovo.png">
 							</li>
 							<li>
-								<input type="radio" id="gopay" name="pay">
+								<input type="radio" value="gopay" id="gopay" name="pay">
 								<label for="pay"><img src="img/gopay.png">
 							</li>
 							<li>
-								<input type="radio" id="dana" name="pay">
+								<input type="radio" value="dana" id="dana" name="pay">
 								<label for="pay"><img src="img/dana.png">
 							</li>
 						</ul>
@@ -100,15 +100,15 @@
 						Select EDC:
 						<ul class="list-unstyled ewallet_method" id="id_edc">
 							<li>
-								<input type="radio" id="bca" name="pay">
+								<input type="radio" value="bca" id="bca" name="pay">
 								<label for="pay">BCA
 							</li>
 							<li>
-								<input type="radio" id="mandiri" name="pay">
+								<input type="radio" value="mandiri" id="mandiri" name="pay">
 								<label for="pay">MANDIRI
 							</li>
 							<li>
-								<input type="radio" id="bni" name="pay">
+								<input type="radio" value="bni" id="bni" name="pay">
 								<label for="pay">BNI
 							</li>
 						</ul>
