@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <div class="page-header">
+      <h1 style="text-align: center;">ACTIVITY</h1>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div style="text-align: center; background-color: rgb(197, 197, 197);">
+          <table class="table">
+            <tr class="info">
+              <td
+                type="button"
+                name="history"
+                data-toggle="modal"
+                data-target="#test"
+                style="cursor: pointer;"
+              >
+                <div class="row" style="text-align: center;">
+                  <div class="col-4">
+                    <p>Payment Method</p>
+                  </div>
+                  <div class="col-4">
+                    <p>Price: Rp.</p>
+                  </div>
+                  <div class="col-4">
+                    <p>Time</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    <p>---</p>
+                  </div>
+                  <div class="col-4">
+                    <p>Item Name</p>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div id="test" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+              <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <p>Transaction Details</p>
+                <tr>
+                  <td>
+                    <p>Payment Method</p>
+                  </td>
+                  <td>
+                    <p>Method</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p>Transaction ID</p>
+                  </td>
+                  <td>
+                    <p>#########</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p>Time Of Purchase</p>
+                  </td>
+                  <td>
+                    <p>Time</p>
+                  </td>
+                </tr>
+
+                <table class="table">
+                  <p>Items</p>
+                  <tr>
+                    <td>
+                      <p>Picture</p>
+                    </td>
+                    <td>
+                      <p>Name</p>
+                    </td>
+                    <td>
+                      <p>Quantity</p>
+                    </td>
+                    <td>
+                      <p>Price</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>Picture</p>
+                    </td>
+                    <td>
+                      <p>Name</p>
+                    </td>
+                    <td>
+                      <p>Quantity</p>
+                    </td>
+                    <td>
+                      <p>Price</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <p>SubTotal:</p>
+                    </td>
+                    <td>
+                      <p>Price</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <p>Pay:</p>
+                    </td>
+                    <td>
+                      <p>Price</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <p>Change:</p>
+                    </td>
+                    <td>
+                      <p>Price</p>
+                    </td>
+                  </tr>
+                </table>
+              </table>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-default"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

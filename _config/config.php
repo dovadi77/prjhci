@@ -51,6 +51,27 @@ function addTransactionMenu($con, $order_id, $menu_id, $variety, $add_info, $qua
     $stmt->close();
 }
 
+function showTransaction($con)
+{
+    $stmt = $con->prepare("SELECT * FROM `transaksi` inner join `login` on `transaksi`.`cashier_id` = `login`.`cashier_id` ORDER BY transaksi.`id`");
+    if (!($stmt->execute())) {
+        echo "<alert>ERROR</error>";
+    }
+    $data = $stmt->get_result();
+    if ($data->num_rows === 0) echo ('No DATA');
+    return $data;
+}
+function showTransactionDetail($con, $id)
+{
+    $stmt = $con->prepare("SELECT * FROM `transaksi_detail` inner join `transaksi` on `transaksi_detail`.`order_id` = `transaksi`.`id` INNER JOIN `menu` on transaksi_detail.menu_id = menu.id where transaksi_detail.order_id = '$id' ORDER BY transd_id ASC");
+    if (!($stmt->execute())) {
+        echo "<alert>ERROR</error>";
+    }
+    $data = $stmt->get_result();
+    if ($data->num_rows === 0) echo ('No DATA');
+    return $data;
+}
+
 function toRupiah($nominal)
 {
     return "Rp. " . number_format($nominal, 0, ',', '.');
