@@ -8,8 +8,9 @@ if (isset($_POST['menu'])) {
     $qty = $_POST['qty'];
     $val = $_POST['val'];
     $pay = $_POST['pay'];
+    $payment = $_POST['payment'];
     $nom = toRupiah($pay);
-    addTransaction($con, 1, "cash", $nom, $nom);
+    addTransaction($con, 1, $payment, $nom, $nom);
     $data = mysqli_query($con, "SELECT * from transaksi");
     $id = mysqli_num_rows($data);
     for ($i = 0; $i < count($menu); $i++) {
