@@ -100,10 +100,10 @@ $("span[class^='add']").on("click", function () {
   var add = $("textarea[id='" + id + "']").val();
   var patt = /c/g;
   if (count > 0) {
-    if (variant == null || (sales == null && patt.test(id) == true)) {
-      alert("Please input correctly");
+    if ((variant == null && patt.test(id) == true) || sales == null) {
+      alert("Please input correctly aa");
     } else if (sales == null && patt.test(id) == false) {
-      alert("Please input correctly");
+      alert("Please input correctly bb");
     } else {
       if (patt.test(id) == false) {
         variant = null;
