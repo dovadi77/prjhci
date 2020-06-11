@@ -6,7 +6,10 @@ function conDB()
     if ($con->connect_error) {
         $con = new mysqli("localhost", "hci", "ProjectHci@2020", "pos");
         if ($con->connect_error) {
-            die("Connection failed: " . $con->connect_error);
+            $con = new mysqli("localhost", "webbasecafe", "va7ezy9ys", "zadmin_webbasecafe");
+            if ($con->connect_error) {
+                die("Connection failed: " . $con->connect_error);
+            }
         }
     }
     return $con;
